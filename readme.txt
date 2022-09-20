@@ -17,4 +17,7 @@
 
 6.) Create node server:
     - Create index.js
-    - 
+    
+7.) Configure database component:
+    - Set up Atlas, create cluster, create database. titled as Bookstore, create collection titled Information.
+    
