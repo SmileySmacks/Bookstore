@@ -28,107 +28,109 @@
 Content for books-controllers.js:
 
 
-const Information = require("../Model/Information")
+            const Information = require("../Model/Information")
 
-const getAllBooks = async(req, res, next) => {
-    const full_list = await Information.find({})
-    try {
-        res.status(200).json({
-            status: "Success",
-            data: {
-                full_list
+            const getAllBooks = async(req, res, next) => {
+                const full_list = await Information.find({})
+                try {
+                    res.status(200).json({
+                        status: "Success",
+                        data: {
+                            full_list
+                        }
+                    })
+                }
+                catch(err){
+                    res.status(500).json({
+                        status: "Failed",
+                        message: err
+                    })
+                }
             }
-        })
-    }
-    catch(err){
-        res.status(500).json({
-            status: "Failed",
-            message: err
-        })
-    }
-}
 
-const addBook = async(req, res, next) => {
-    const info_to_be_added = new Information(req.body)
-    try {
-        await info_to_be_added.save()
-        res.status(201).json({
-            status: "Success",
-            data: {
-                info_to_be_added
+            const addBook = async(req, res, next) => {
+                const info_to_be_added = new Information(req.body)
+                try {
+                    await info_to_be_added.save()
+                    res.status(201).json({
+                        status: "Success",
+                        data: {
+                            info_to_be_added
+                        }
+                    })
+                } 
+                catch(err){
+                    res.status(500).json({
+                        status: "Failed",
+                        message: err
+                    })
+                }
             }
-        })
-    } 
-    catch(err){
-        res.status(500).json({
-            status: "Failed",
-            message: err
-        })
-    }
-}
 
-const deleteBook = async(req, res, next) => {
-    await Information.findByIdAndDelete(req.params.id)
-    try {
-        res.status(204).json({
-            status: "Success",
-            data: {}
-        })
-    }
-    catch(err){
-        res.status(500).json({
-            status: "Failed",
-            message: err
-        })
-    }
-}
-
-const updateBook = async(req, res, next) => {
-    const update_entry = await Information.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true
-    })
-    try {
-        res.status(200).json({
-            status: "Success",
-            data: {
-                update_entry
+            const deleteBook = async(req, res, next) => {
+                await Information.findByIdAndDelete(req.params.id)
+                try {
+                    res.status(204).json({
+                        status: "Success",
+                        data: {}
+                    })
+                }
+                catch(err){
+                    res.status(500).json({
+                        status: "Failed",
+                        message: err
+                    })
+                }
             }
-        })
-    }
-    catch(err){
-        console.log(err)
-    }
-    
-}
 
-exports.getAllBooks = getAllBooks
-exports.addBook = addBook
-exports.deleteBook = deleteBook
-exports.updateBook = updateBook
+            const updateBook = async(req, res, next) => {
+                const update_entry = await Information.findByIdAndUpdate(req.params.id, req.body, {
+                    new: true,
+                    runValidators: true
+                })
+                try {
+                    res.status(200).json({
+                        status: "Success",
+                        data: {
+                            update_entry
+                        }
+                    })
+                }
+                catch(err){
+                    console.log(err)
+                }
+                
+            }
+
+            exports.getAllBooks = getAllBooks
+            exports.addBook = addBook
+            exports.deleteBook = deleteBook
+            exports.updateBook = updateBook
 
 
 10.) Create route file insie routes folder titled "book-routes.js"
 Content for book-routes.js:
 
-const express = require('express')
-const router = express.Router()
-const Information = require('../Model/Information')
-const booksController = require('../Controllers/books-controllers')
+        const express = require('express')
+        const router = express.Router()
+        const Information = require('../Model/Information')
+        const booksController = require('../Controllers/books-controllers')
 
-//localhost:3001/books/inventory
-router.get('/inventory', booksController.getAllBooks)
+        //localhost:3001/books/inventory
+        router.get('/inventory', booksController.getAllBooks)
 
-//localhost:3001/books/add
-router.post('/add', booksController.addBook)
+        //localhost:3001/books/add
+        router.post('/add', booksController.addBook)
 
-//localhost:3001/books/update/:id
-router.patch('/update/:id', booksController.updateBook)
+        //localhost:3001/books/update/:id
+        router.patch('/update/:id', booksController.updateBook)
 
-//localhost:3001/books/delete/:id
-router.delete('/delete/:id', booksController.deleteBook)
+        //localhost:3001/books/delete/:id
+        router.delete('/delete/:id', booksController.deleteBook)
 
 
-module.export = router
+        module.export = router
 
+
+11.)
 

@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const mongoose = require("mongoose")  
+const router = require('./Routes/book-routes')
 app.use(express.json())
 const cors = require('cors')
 app.use(cors())
@@ -15,6 +16,9 @@ mongoose.connect(DB, {
 .then(()=> {
     console.log("Database Connected")
 })
+
+//localhost:3001/books
+app.use('/books', router)
 
 app.listen(PORT, () =>{
     console.log(`Server is running on port ${PORT}`)
