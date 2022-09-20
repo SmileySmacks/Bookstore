@@ -15,4 +15,6 @@
 
 5.) Modify backend package.json for nodemon index.js
 
-6.
+6.) Create node server:
+    - Create index.js
+    - 
