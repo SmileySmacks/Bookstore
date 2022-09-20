@@ -12,5 +12,7 @@
 
 4.) Install backend dependencies:
     - npm install mongoose cors express nodemon
-    
-         
+
+5.) Modify backend package.json for nodemon index.js
+
+6.
