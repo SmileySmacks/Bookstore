@@ -20,4 +20,6 @@
     
 7.) Configure database component:
     - Set up Atlas, create cluster, create database. titled as Bookstore, create collection titled Information.
-    
+
+8.) Creage mongoose model for schema
+    - Create a file titled information.js in model folder
